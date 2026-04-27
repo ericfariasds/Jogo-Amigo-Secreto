@@ -161,6 +161,7 @@ ul {
     background-color: var(--color-button-hover);
 }
 
+/* Botão de reiniciar */
 .button-restart {
     margin-top: 20px;
     background-color: var(--color-primary);
@@ -172,4 +173,136 @@ ul {
  
 .button-restart:hover {
     background-color: #3a56d4;
+}
+
+/* Animação de embaralhando */
+.animacao-sorteio {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-align: center;
+    padding: 20px 0;
+    animation: pulsar 0.6s ease-in-out infinite alternate;
+}
+ 
+@keyframes pulsar {
+    from { opacity: 1;   transform: scale(1);    }
+    to   { opacity: 0.5; transform: scale(1.05); }
+}
+
+/* Feedback visual nos resultados */
+.resultado-par {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 16px;
+    margin: 6px 0;
+    background-color: var(--color-white);
+    border-radius: 16px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+ 
+    /* Animação de entrada */
+    animation: entrar 0.4s ease both;
+}
+ 
+@keyframes entrar {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+ 
+.icone-resultado {
+    font-size: 22px;
+}
+ 
+.nome-dando {
+    color: var(--color-text);
+    font-weight: 600;
+}
+ 
+.seta {
+    color: var(--color-tertiary);
+    font-size: 20px;
+}
+ 
+.nome-sorteado {
+    color: var(--color-primary);
+    font-weight: 900;
+    font-size: 20px;
+    background-color: #e8ecff;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+ 
+/* Aviso de lista insuficiente */
+.aviso {
+    color: var(--color-button);
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 0;
+}
+ 
+/* Responsividade */
+@media (max-width: 600px) {
+    .main-title {
+        font-size: 32px;
+    }
+ 
+    .section-title {
+        font-size: 22px;
+    }
+ 
+    .header-banner {
+        flex-direction: column;
+        padding: 24px 16px 0;
+        gap: 12px;
+    }
+ 
+    .header-banner img {
+        max-width: 120px;
+    }
+ 
+    .input-section {
+        border-radius: 40px 40px 0 0;
+        padding: 20px 16px;
+    }
+ 
+    .input-wrapper {
+        flex-direction: column;
+        gap: 10px;
+    }
+ 
+    .input-name {
+        border-radius: 25px;
+        width: 100%;
+    }
+ 
+    .button-add {
+        border-radius: 25px;
+        width: 100%;
+    }
+ 
+    .button-container {
+        width: 100%;
+    }
+ 
+    .button-draw {
+        justify-content: center;
+        padding: 12px 20px;
+    }
+ 
+    .button-draw img {
+        margin-right: 12px;
+    }
+ 
+    .resultado-par {
+        flex-wrap: wrap;
+        font-size: 16px;
+        justify-content: center;
+    }
+ 
+    .nome-sorteado {
+        font-size: 17px;
+    }
 }

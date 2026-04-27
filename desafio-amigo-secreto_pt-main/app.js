@@ -55,21 +55,56 @@ function sortearAmigo() {
         return;
     }
  
-    const pares = gerarPares(listaDeAmigos);
+    // Desabilita o botão durante a animação
+    const btnSortear = document.querySelector(".button-draw");
+    btnSortear.disabled = true;
  
-    pares.forEach(({ amigo, sorteado }) => {
-        const li = document.createElement("li");
-        li.textContent = `${amigo} → ${sorteado}`;
-        resultado.appendChild(li);
-    });
+    // Mensagem de embaralhando com animação de pontos
+    const liAnimacao = document.createElement("li");
+    liAnimacao.className = "animacao-sorteio";
+    liAnimacao.textContent = "Embaralhando";
+    resultado.appendChild(liAnimacao);
  
-    // Adiciona o botão de reiniciar após o sorteio
-    const btnReiniciar = document.createElement("button");
-    btnReiniciar.textContent = "Novo sorteio";
-    btnReiniciar.className = "button-restart";
-    btnReiniciar.onclick = reiniciarJogo;
-    resultado.appendChild(btnReiniciar);
+    let pontos = 0;
+    const intervalo = setInterval(() => {
+        pontos = (pontos + 1) % 4;
+        liAnimacao.textContent = "Embaralhando" + ".".repeat(pontos);
+    }, 300);
+ 
+    // Após 2 segundos, para a animação e exibe os resultados
+    setTimeout(() => {
+        clearInterval(intervalo);
+        resultado.innerHTML = "";
+        btnSortear.disabled = false;
+ 
+        const pares = gerarPares(listaDeAmigos);
+ 
+        pares.forEach(({ amigo, sorteado }, index) => {
+            const li = document.createElement("li");
+            li.className = "resultado-par";
+ 
+            // Ícone + destaque visual no nome sorteado
+            li.innerHTML = `
+                <span class="nome-dando">${amigo}</span>
+                <span class="seta">→</span>
+                <span class="nome-sorteado">${sorteado}</span>
+            `;
+ 
+            // Cada par aparece com um pequeno atraso (efeito cascata)
+            li.style.animationDelay = `${index * 150}ms`;
+            resultado.appendChild(li);
+        });
+ 
+        // Botão de reiniciar
+        const btnReiniciar = document.createElement("button");
+        btnReiniciar.textContent = "Novo sorteio";
+        btnReiniciar.className = "button-restart";
+        btnReiniciar.onclick = reiniciarJogo;
+        resultado.appendChild(btnReiniciar);
+ 
+    }, 2000);
 }
+
 
 
 // Gerar pares sem repetição

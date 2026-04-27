@@ -160,3 +160,16 @@ ul {
 .button-draw:hover {
     background-color: var(--color-button-hover);
 }
+
+.button-restart {
+    margin-top: 20px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    font-size: 16px;
+    padding: 12px 30px;
+}
+ 
+.button-restart:hover {
+    background-color: #3a56d4;
+}
